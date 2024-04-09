@@ -1,4 +1,4 @@
-package com.etrg.syed.assignment.movierental.movierental;
+package com.etrg.syed.assignment.movierental;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

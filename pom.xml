@@ -8,7 +8,7 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.etrg.syed.assignment.movierental</groupId>
+	<groupId>com.etrg.syed.assignment</groupId>
 	<artifactId>movierental</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>movierental</name>
