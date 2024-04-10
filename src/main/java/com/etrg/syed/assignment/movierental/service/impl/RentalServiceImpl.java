@@ -3,6 +3,7 @@
  */
 package com.etrg.syed.assignment.movierental.service.impl;
 
+import com.etrg.syed.assignment.movierental.exception.customexceptions.MovieNotFoundException;
 import com.etrg.syed.assignment.movierental.model.Customer;
 import com.etrg.syed.assignment.movierental.model.Movie;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
@@ -32,8 +33,7 @@ public class RentalServiceImpl implements RentalService {
         int frequentRenterPoints = 0;
 
         for (MovieRental rental : customer.getRentals()) {
-            Movie movie = movieRepository.findById(rental.getMovieId())
-                    .orElseThrow(() -> new IllegalArgumentException(MOVIE_NOT_FOUND));
+            Movie movie = findMovieById(rental.getMovieId());
             PricingStrategy strategy = PricingStrategyFactory.getStrategy(movie.getType());
 
             double thisAmount = strategy.calculateAmount(rental);
@@ -47,5 +47,11 @@ public class RentalServiceImpl implements RentalService {
         result.append(AMOUNT_OWED).append(String.format(STRING_TO_2POINT_DECIMAL, totalAmount)).append(LINE_BREAK);
         result.append(YOU_EARNED).append(frequentRenterPoints).append(FREQUENT_RENTER_POINTS).append(LINE_BREAK);
         return result.toString();
+    }
+
+    @Override
+    public Movie findMovieById(String movieId) {
+        return movieRepository.findById(movieId)
+                .orElseThrow(() -> new MovieNotFoundException("Movie with ID " + movieId + " not found."));
     }
 }
