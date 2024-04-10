@@ -12,7 +12,7 @@
 	<artifactId>movierental</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>movierental</name>
-	<description>Assignemtn project for movierental</description>
+	<description>Assignment project for movierental</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
