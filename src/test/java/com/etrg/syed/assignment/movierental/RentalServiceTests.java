@@ -1,4 +1,4 @@
-/** Created by Syed */package com.etrg.syed.assignment.movierental;
+package com.etrg.syed.assignment.movierental;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
