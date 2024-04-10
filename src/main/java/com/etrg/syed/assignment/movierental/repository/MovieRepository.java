@@ -5,11 +5,13 @@ package com.etrg.syed.assignment.movierental.repository;
 
 import com.etrg.syed.assignment.movierental.model.Movie;
 import com.etrg.syed.assignment.movierental.model.MovieTypeEnum;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
 public class MovieRepository {
     //Mock MovieRepository using Map, since there is no database connected at the moment.
     private final Map<String, Movie> movies = new HashMap<>();

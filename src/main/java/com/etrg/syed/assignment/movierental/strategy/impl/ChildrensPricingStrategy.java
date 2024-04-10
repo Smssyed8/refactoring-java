@@ -6,22 +6,21 @@ package com.etrg.syed.assignment.movierental.strategy.impl;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
 import com.etrg.syed.assignment.movierental.strategy.PricingStrategy;
 
+import static com.etrg.syed.assignment.movierental.utilities.Constants.*;
+
 public class ChildrensPricingStrategy implements PricingStrategy {
-    private static final double BASE_PRICE = 1.5;
-    private static final int BASE_DAYS = 3;
-    private static final double ADDITIONAL_PRICE = 1.5;
 
     @Override
     public double calculateAmount(MovieRental rental) {
-        if (rental.getDaysRented() <= BASE_DAYS) {
-            return BASE_PRICE;
+        if (rental.getDaysRented() <= CHILDRENS_BASE_DAYS) {
+            return CHILDRENS_BASE_PRICE;
         } else {
-            return BASE_PRICE + (rental.getDaysRented() - BASE_DAYS) * ADDITIONAL_PRICE;
+            return CHILDRENS_BASE_PRICE + (rental.getDaysRented() - CHILDRENS_BASE_DAYS) * CHILDRENS_ADDITIONAL_PRICE;
         }
     }
 
     @Override
     public int calculateFrequentRenterPoints(MovieRental rental) {
-        return 1; // Children's movies always earn 1 point per rental
+        return FREQUENT_RENTER_POINTS_BASE; // Children's movies always earn 1 point per rental
     }
 }
