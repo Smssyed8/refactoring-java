@@ -19,4 +19,6 @@ public class PricingStrategyFactory {
             case CHILDREN -> new ChildrensPricingStrategy();
         };
     }
+
+    private PricingStrategyFactory () {}
 }
