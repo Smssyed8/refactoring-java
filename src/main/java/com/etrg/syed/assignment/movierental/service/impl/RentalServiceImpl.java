@@ -24,6 +24,7 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public String statement(Customer customer) {
+        //TODO move constants
         StringBuilder result = new StringBuilder("Rental Record for ").append(customer.getName()).append(":\n");
         double totalAmount = 0;
         int frequentRenterPoints = 0;
@@ -36,11 +37,12 @@ public class RentalServiceImpl implements RentalService {
             double thisAmount = strategy.calculateAmount(rental);
             frequentRenterPoints += strategy.calculateFrequentRenterPoints(rental);
 
-            result.append("\t").append(movie.getTitle()).append("\t").append(thisAmount).append("\n");
+            //TODO I think I can use var here as improvement for amount, to avoid %.2f used to format to decimal 2 point.
+            result.append("\t").append(movie.getTitle()).append("\t").append(String.format("%.2f", thisAmount)).append("\n");
             totalAmount += thisAmount;
         }
-
-        result.append("Amount owed is ").append(totalAmount).append("\n");
+        //TODO I think I can use var here as improvement for amount, to avoid %.2f used to format to decimal 2 point.
+        result.append("Amount owed is ").append(String.format("%.2f", totalAmount)).append("\n");
         result.append("You earned ").append(frequentRenterPoints).append(" frequent renter points\n");
         return result.toString();
     }
