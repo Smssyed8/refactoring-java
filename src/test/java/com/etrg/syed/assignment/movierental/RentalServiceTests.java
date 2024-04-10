@@ -39,31 +39,35 @@ class RentalServiceTests {
 
     // Mock behavior setup for known movie IDs
     when(movieRepository.findById("F001"))
-        .thenReturn(Optional.of(new Movie("You've Got Mail", MovieTypeEnum.REGULAR)));
+            .thenReturn(Optional.of(new Movie("You've Got Mail", MovieTypeEnum.REGULAR)));
     when(movieRepository.findById("F002"))
-        .thenReturn(Optional.of(new Movie("Matrix", MovieTypeEnum.REGULAR)));
+            .thenReturn(Optional.of(new Movie("Matrix", MovieTypeEnum.REGULAR)));
     when(movieRepository.findById("F003"))
-        .thenReturn(Optional.of(new Movie("Cars", MovieTypeEnum.CHILDRENS)));
+            .thenReturn(Optional.of(new Movie("Cars", MovieTypeEnum.CHILDREN)));
     when(movieRepository.findById("F004"))
-        .thenReturn(Optional.of(new Movie("Fast & Furious X", MovieTypeEnum.NEW_RELEASE)));
+            .thenReturn(Optional.of(new Movie("Fast & Furious X", MovieTypeEnum.NEW_RELEASE)));
   }
 
   @Test
   @DisplayName("regular movies only")
   void calculateRegularMovieRentalCost() {
-    Customer customer = new Customer("C. U. Stomer", Arrays.asList(
-            new MovieRental("F001", 3), // Regular movie for 3 days
-            new MovieRental("F002", 1)  // Another Regular movie for 1 day
-    ));
+    Customer customer =
+            new Customer(
+                    "C. U. Stomer",
+                    Arrays.asList(
+                            new MovieRental("F001", 3), // Regular movie for 3 days
+                            new MovieRental("F002", 1) // Another Regular movie for 1 day
+                    ));
 
     // Expected statement
-    String expectedStatement = """
-        Rental Record for C. U. Stomer
-        \tYou've Got Mail\t3.5
-        \tMatrix\t2.0
-        Amount owed is 5.5
-        You earned 2 frequent points
-        """;
+    String expectedStatement =
+            """
+            Rental Record for C. U. Stomer
+            \tYou've Got Mail\t3.5
+            \tMatrix\t2.0
+            Amount owed is 5.5
+            You earned 2 frequent points
+            """;
 
     String statement = rentalService.statement(customer);
 
@@ -75,19 +79,21 @@ class RentalServiceTests {
   @DisplayName("Calculate statement for a mix of regular and children's movies")
   void testStatementForMixedRentals() {
     Customer customer =
-        new Customer(
-            "C. U. Stomer",
-            Arrays.asList(
-                new MovieRental("F001", 3), // Regular movie for 3 days
-                new MovieRental("F003", 1) // Children's movie for 1 day
-                ));
+            new Customer(
+                    "C. U. Stomer",
+                    Arrays.asList(
+                            new MovieRental("F001", 3), // Regular movie for 3 days
+                            new MovieRental("F003", 1) // Children's movie for 1 day
+                    ));
 
     String expected =
-        "Rental Record for C. U. Stomer\n"
-            + "\tYou've Got Mail\t3.5\n"
-            + "\tCars\t1.5\n"
-            + "Amount owed is 5.0\n"
-            + "You earned 2 frequent points\n";
+            """
+            Rental Record for C. U. Stomer
+            \tYou've Got Mail\t3.5
+            \tCars\t1.5
+            Amount owed is 5.0
+            You earned 2 frequent points
+            """;
     String result = rentalService.statement(customer);
 
     assertEquals(expected.trim(), result.trim());
@@ -97,17 +103,19 @@ class RentalServiceTests {
   @DisplayName("Calculate statement for new release movie rented for more than one day")
   void testStatementForNewReleaseMultipleDays() {
     Customer customer =
-        new Customer(
-            "C. U. Stomer",
-            List.of(
-                new MovieRental("F004", 3) // New release movie for 3 days
-                ));
+            new Customer(
+                    "C. U. Stomer",
+                    List.of(
+                            new MovieRental("F004", 3) // New release movie for 3 days
+                    ));
 
     String expected =
-        "Rental Record for C. U. Stomer\n"
-            + "\tFast & Furious X\t9.0\n"
-            + "Amount owed is 9.0\n"
-            + "You earned 2 frequent points\n";
+            """
+            Rental Record for C. U. Stomer
+            \tFast & Furious X\t9.0
+            Amount owed is 9.0
+            You earned 2 frequent points
+            """;
     String result = rentalService.statement(customer);
 
     assertEquals(expected.trim(), result.trim());
@@ -130,7 +138,7 @@ class RentalServiceTests {
   void whenRentalDaysAreNegative_thenThrowInvalidRentalPeriodException() {
     Customer customer = new Customer("C. U. Stomer", List.of(new MovieRental("F001", -1)));
     when(movieRepository.findById("F001"))
-        .thenReturn(Optional.of(new Movie("You've Got Mail", MovieTypeEnum.REGULAR)));
+            .thenReturn(Optional.of(new Movie("You've Got Mail", MovieTypeEnum.REGULAR)));
 
     assertThrows(InvalidRentalPeriodException.class, () -> rentalService.statement(customer));
   }
@@ -152,23 +160,25 @@ class RentalServiceTests {
   @DisplayName("Calculate statement with a mix of all movie types")
   void testStatementWithMixedMovieTypes() {
     Customer customer =
-        new Customer(
-            "C. U. Stomer",
-            Arrays.asList(
-                new MovieRental("F001", 3), // Regular movie for 3 days
-                new MovieRental("F002", 1), // Another Regular movie for 1 day
-                new MovieRental("F003", 4), // Children's movie for 4 days
-                new MovieRental("F004", 2) // New release movie for 2 days
-                ));
+            new Customer(
+                    "C. U. Stomer",
+                    Arrays.asList(
+                            new MovieRental("F001", 3), // Regular movie for 3 days
+                            new MovieRental("F002", 1), // Regular movie for 1 day
+                            new MovieRental("F003", 4), // Children's movie for 4 days
+                            new MovieRental("F004", 2) // New release movie for 2 days
+                    ));
 
     String expected =
-        "Rental Record for C. U. Stomer\n"
-            + "\tYou've Got Mail\t3.5\n"
-            + "\tMatrix\t2.0\n"
-            + "\tCars\t3.0\n"
-            + "\tFast & Furious X\t6.0\n"
-            + "Amount owed is 14.5\n"
-            + "You earned 4 frequent points\n";
+            """
+            Rental Record for C. U. Stomer
+            \tYou've Got Mail\t3.5
+            \tMatrix\t2.0
+            \tCars\t3.0
+            \tFast & Furious X\t6.0
+            Amount owed is 14.5
+            You earned 4 frequent points
+            """;
     String result = rentalService.statement(customer);
 
     assertEquals(expected.trim(), result.trim());

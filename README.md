@@ -1,21 +1,28 @@
 # Refactoring Java
 
-The code creates an information slip about movie rentals.
-Rewrite and improve the code after your own liking.
+This is a Spring Boot REST API project using Java 21 and 
+Maven. It follows design patterns like Factory and Strategy, 
+sticking to the Open-Closed principle from SOLID principles. 
+Tests, including API tests, are part of the project.
+Used Google Code Format for code formatting.
 
-Think: you are responsible for the solution, this is a solution you will have to put your name on.
+commands to run:
+```
+mvn clean install
 
-
-## Handing in the assignment
-
-Reason how you have been thinking and the decisions you took. 
-You can hand in the result any way you feel (git patch, pull-request or ZIP-file).
-Note: the Git history must be included.
-
+mvn spring-boot:run
+```
 
 ## To run the test:
 
 ```
-javac src/*.java
-java -cp src Main
+mvn test
 ```
+
+## Enhancement scope:
+Future improvements could include adding logging,
+API documentation with Swagger, simplifying deployment, 
+setting up CI/CD, 
+and moving constants to configurations.
+
+

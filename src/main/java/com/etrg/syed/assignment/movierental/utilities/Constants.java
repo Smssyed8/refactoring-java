@@ -16,10 +16,11 @@ public class Constants {
 
     // Frequent Renter Points
     public static final int FREQUENT_RENTER_POINTS_BASE = 1;
-    public static final int BONUS_FREQUENT_RENTER_POINTS = 2; // For new release rented more than 2 day
+    public static final int BONUS_FREQUENT_RENTER_POINTS = 2; //new released movie rented more than 2 day
 
-    // String format and other formats
-    public static final String STRING_TO_2POINT_DECIMAL = "%.1f";
+    // formats
     public static final String LINE_BREAK = "\n";
     public static final String TAB = "\t";
+
+    private Constants() {}
 }
