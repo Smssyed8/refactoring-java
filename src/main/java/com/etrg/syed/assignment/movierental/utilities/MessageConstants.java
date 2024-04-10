@@ -11,4 +11,5 @@ public class MessageConstants {
 
     //Exception messages
     public static final String MOVIE_NOT_FOUND = "Movie ID not found";
+    public static final String UNKNOWN_MOVIE_TYPE = "Unknown movie type: ";
 }

@@ -27,7 +27,7 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public String statement(Customer customer) {
-        StringBuilder result = new StringBuilder(RENTAL_RECORD_FOR_).append(customer.getName()).append(":\n");
+        StringBuilder result = new StringBuilder(RENTAL_RECORD_FOR_).append(customer.getName()).append(":").append(LINE_BREAK);
         double totalAmount = 0;
         int frequentRenterPoints = 0;
 
