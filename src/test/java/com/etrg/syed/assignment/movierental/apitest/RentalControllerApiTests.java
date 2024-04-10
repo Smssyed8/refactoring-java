@@ -1,5 +1,4 @@
-/** Created by Syed */
-package com.etrg.syed.assignment.movierental.apitest;
+/** Created by Syed */package com.etrg.syed.assignment.movierental.apitest;
 import com.etrg.syed.assignment.movierental.model.Customer;
 import com.etrg.syed.assignment.movierental.model.Movie;
 import com.etrg.syed.assignment.movierental.model.MovieTypeEnum;

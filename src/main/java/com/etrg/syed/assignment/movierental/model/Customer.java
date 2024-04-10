@@ -1,6 +1,3 @@
-/**
- * Created by Syed
- */
 package com.etrg.syed.assignment.movierental.model;
 
 import java.util.List;
