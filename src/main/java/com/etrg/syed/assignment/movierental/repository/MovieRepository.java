@@ -20,6 +20,7 @@ public class MovieRepository {
         movies.put("F001", new Movie("You've Got Mail", MovieTypeEnum.REGULAR));
         movies.put("F002", new Movie("Matrix", MovieTypeEnum.NEW_RELEASE));
         movies.put("F003", new Movie("Cars", MovieTypeEnum.CHILDRENS));
+        movies.put("F004", new Movie("Fast & Furious X", MovieTypeEnum.NEW_RELEASE));
         //Can add more movies
     }
 

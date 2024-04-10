@@ -17,6 +17,6 @@ public class NewReleasePricingStrategy implements PricingStrategy {
     @Override
     public int calculateFrequentRenterPoints(MovieRental rental) {
         // Bonus point for a two day new release rental
-        return rental.getDaysRented() > 1 ? 2 : 1;
+        return rental.getDaysRented() > 2 ? 2 : 1;
     }
 }
