@@ -6,8 +6,10 @@ package com.etrg.syed.assignment.movierental.strategy.impl;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
 import com.etrg.syed.assignment.movierental.strategy.PricingStrategy;
 
-import static com.etrg.syed.assignment.movierental.utilities.Constants.*;
-
+import static com.etrg.syed.assignment.movierental.utilities.Constants.REGULAR_BASE_DAYS;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.REGULAR_ADDITIONAL_PRICE;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.REGULAR_BASE_PRICE;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.FREQUENT_RENTER_POINTS_BASE;
 public class RegularPricingStrategy implements PricingStrategy {
 
     @Override

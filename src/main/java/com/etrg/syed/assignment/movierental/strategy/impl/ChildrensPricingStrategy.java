@@ -6,7 +6,10 @@ package com.etrg.syed.assignment.movierental.strategy.impl;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
 import com.etrg.syed.assignment.movierental.strategy.PricingStrategy;
 
-import static com.etrg.syed.assignment.movierental.utilities.Constants.*;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.CHILDRENS_BASE_DAYS;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.CHILDRENS_BASE_PRICE;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.CHILDRENS_ADDITIONAL_PRICE;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.FREQUENT_RENTER_POINTS_BASE;
 
 public class ChildrensPricingStrategy implements PricingStrategy {
 

@@ -14,9 +14,13 @@ import com.etrg.syed.assignment.movierental.strategy.PricingStrategyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.etrg.syed.assignment.movierental.utilities.Constants.*;
-import static com.etrg.syed.assignment.movierental.utilities.MessageConstants.*;
-
+import static com.etrg.syed.assignment.movierental.utilities.Constants.LINE_BREAK;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.STRING_TO_2POINT_DECIMAL;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.TAB;
+import static com.etrg.syed.assignment.movierental.utilities.MessageConstants.RENTAL_RECORD_FOR_;
+import static com.etrg.syed.assignment.movierental.utilities.MessageConstants.FREQUENT_RENTER_POINTS;
+import static com.etrg.syed.assignment.movierental.utilities.MessageConstants.YOU_EARNED;
+import static com.etrg.syed.assignment.movierental.utilities.MessageConstants.AMOUNT_OWED;
 @Service
 public class RentalServiceImpl implements RentalService {
     private final MovieRepository movieRepository;

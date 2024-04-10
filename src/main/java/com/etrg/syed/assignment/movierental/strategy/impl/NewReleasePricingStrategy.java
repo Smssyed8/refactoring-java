@@ -6,7 +6,9 @@ package com.etrg.syed.assignment.movierental.strategy.impl;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
 import com.etrg.syed.assignment.movierental.strategy.PricingStrategy;
 
-import static com.etrg.syed.assignment.movierental.utilities.Constants.*;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.NEW_RELEASE_PRICE_PER_DAY;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.BONUS_FREQUENT_RENTER_POINTS;
+import static com.etrg.syed.assignment.movierental.utilities.Constants.FREQUENT_RENTER_POINTS_BASE;
 
 public class NewReleasePricingStrategy implements PricingStrategy {
 
