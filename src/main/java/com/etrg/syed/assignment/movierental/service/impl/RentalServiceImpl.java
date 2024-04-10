@@ -4,6 +4,7 @@
 package com.etrg.syed.assignment.movierental.service.impl;
 
 import com.etrg.syed.assignment.movierental.exception.customexceptions.MovieNotFoundException;
+import com.etrg.syed.assignment.movierental.exception.customexceptions.InvalidRentalPeriodException;
 import com.etrg.syed.assignment.movierental.model.Customer;
 import com.etrg.syed.assignment.movierental.model.Movie;
 import com.etrg.syed.assignment.movierental.model.MovieRental;
@@ -32,11 +33,19 @@ public class RentalServiceImpl implements RentalService {
 
     @Override
     public String statement(Customer customer) {
-        StringBuilder result = new StringBuilder(RENTAL_RECORD_FOR_).append(customer.getName()).append(":").append(LINE_BREAK);
+        StringBuilder result = new StringBuilder(RENTAL_RECORD_FOR_).append(customer.getName()).append(LINE_BREAK);
         double totalAmount = 0;
         int frequentRenterPoints = 0;
 
+        if (customer.getRentals() == null) {
+            throw new NullPointerException("Customer and rentals list cannot be null.");
+        }
+
         for (MovieRental rental : customer.getRentals()) {
+            if (rental.getDaysRented() < 0) {
+                throw new InvalidRentalPeriodException("Rental period cannot be negative.");
+            }
+
             Movie movie = findMovieById(rental.getMovieId());
             PricingStrategy strategy = PricingStrategyFactory.getStrategy(movie.getType());
 
