@@ -6,28 +6,29 @@ package com.etrg.syed.assignment.movierental.exception;
 import com.etrg.syed.assignment.movierental.exception.customexceptions.MovieNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(value = { IllegalArgumentException.class })
-    protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "This request is invalid: " + ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse, null, HttpStatus.BAD_REQUEST, request);
+    
+    @ExceptionHandler(IllegalArgumentException.class)
+    public final ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex) {
+        ErrorResponse errorResponse = new ErrorResponse("Invalid Request", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = { Exception.class })
-    protected ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) {
-        String bodyOfResponse = "An unexpected error occurred: " + ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse, null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
+        ErrorResponse errorResponse = new ErrorResponse("Error", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(value = { MovieNotFoundException.class })
-    protected ResponseEntity<Object> handleNotFound(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Movie not found: " + ex.getMessage();
-        return new ResponseEntity<>(bodyOfResponse, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(MovieNotFoundException.class)
+    public final ResponseEntity<ErrorResponse> handleMovieNotFoundException(MovieNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse("Movie Not Found", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }
