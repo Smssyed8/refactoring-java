@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * Customer
+ *
  * @param name
  * @param rentals
  */
-public record Customer (String name, List<MovieRental> rentals) {}
+public record Customer(String name, List<MovieRental> rentals) {}

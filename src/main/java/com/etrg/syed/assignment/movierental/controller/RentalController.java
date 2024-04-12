@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/rentals")
 public class RentalController {
-    private final RentalService rentalService;
+  private final RentalService rentalService;
 
-    @Autowired
-    public RentalController(RentalService rentalService) {
-        this.rentalService = rentalService;
-    }
+  @Autowired
+  public RentalController(RentalService rentalService) {
+    this.rentalService = rentalService;
+  }
 
-    @PostMapping("/statement")
-    public ResponseEntity<String> generateStatement(@RequestBody Customer customer) {
-        return ResponseEntity.ok(rentalService.statement(customer));
-    }
+  @PostMapping("/statement")
+  public ResponseEntity<String> generateStatement(@RequestBody Customer customer) {
+    return ResponseEntity.ok(rentalService.statement(customer));
+  }
 
-    @GetMapping("/movies/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable String id) {
-        Movie movie = rentalService.findMovieById(id);
-        return ResponseEntity.ok(movie);
-    }
+  @GetMapping("/movies/{id}")
+  public ResponseEntity<Movie> getMovieById(@PathVariable String id) {
+    Movie movie = rentalService.findMovieById(id);
+    return ResponseEntity.ok(movie);
+  }
 }
