@@ -143,12 +143,6 @@ class RentalServiceTests {
   }
 
   @Test
-  @DisplayName("Handle null Customer object gracefully")
-  void whenCustomerIsNull_thenHandleGracefully() {
-    assertThrows(NullPointerException.class, () -> rentalService.statement(null));
-  }
-
-  @Test
   @DisplayName("Handle null rentals list within Customer object")
   void whenRentalsListIsNull_thenHandleGracefully() {
     Customer customer = new Customer("C. U. Stomer", null);

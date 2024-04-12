@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
-class MovierentalApplicationTests {
+class MovieRentalApplicationTests {
 
   @Autowired private ApplicationContext context;
 

@@ -60,9 +60,8 @@ public class RentalServiceImpl implements RentalService {
   }
 
   /**
-   * As customer object is received from client, i.e generateStatement is an api,
+   * As customer object is received from client, that is generateStatement is an api,
    * so customer == null is not required here
-   * @param customer
    */
   private static void validateCustomerData(Customer customer) {
     if (customer.rentals() == null) {
